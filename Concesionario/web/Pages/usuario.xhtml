@@ -2,21 +2,42 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <h:form>
-            <p:outputLabel value="Nombres"/>
-            <p:inputText/>
-            <p:outputLabel value="Contraseña"/>
-            <p:inputText/>
-            <p:outputLabel value="Teléfono"/>
-            <p:inputText/>
-            <p:outputLabel value="Dirección"/>
-            <p:inputText/>
-        </h:form>
+        <div class="row">
+            <p:panel header="Registrarse">
+                <h:form id="formulario">
+                    <p:message for="nombre"/>
+                    <p:message for="clave"/>
+                    <p:message for="telefono"/>
+                    <p:message for="direccion"/>
+                    <h:panelGrid columns="2" cellpadding="5" cellspacing="5">
+                        <h:outputLabel value="Nombre:" for="nombre" />
+                        <p:inputText id="nombre" value="#{clienteManagedBean.cliente.nombre}" title="nombre" required="true" label="Nombre">
+                            <f:validateLength maximum="20" minimum="3"/>
+                        </p:inputText>
+
+                        <h:outputLabel value="Clave:" for="clave"/>
+                        <p:inputText id="clave" value="#{clienteManagedBean.cliente.clave}" title="clave" required="true" label="Clave">
+                            <f:validateLength maximum="25" minimum="3"/>
+                        </p:inputText>
+
+                        <h:outputLabel value="Telefono:" for="telefono" />
+                        <p:inputText type="number" required="true" id="telefono" value="#{clienteManagedBean.cliente.telefono}" title="telefono">
+                            <f:validateLength maximum="15" minimum="7"/>
+                        </p:inputText>
+
+                        <h:outputLabel value="Dirección:" for="direccion" />
+                        <p:inputText id="direccion" style="width: 95.3%;" value="#{clienteManagedBean.cliente.direccion}" title="direccion" required="true" label="Direccion"/>
+                        <p:commandButton value="Registrarse" update=":formulario" actionListener="#{clienteManagedBean.registrarCliente()}"/>
+                    </h:panelGrid>
+                </h:form>
+            </p:panel>
+        </div>
     </h:body>
 </html>
 

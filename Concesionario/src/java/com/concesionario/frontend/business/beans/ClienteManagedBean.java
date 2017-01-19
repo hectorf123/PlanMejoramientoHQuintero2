@@ -43,10 +43,8 @@ public class ClienteManagedBean implements Serializable {
         this.cliente = cliente;
     }
 
-    public void registrar() {
-
+    public void registrarCliente() {
         cFL.create(cliente);
-
     }
 
 }
