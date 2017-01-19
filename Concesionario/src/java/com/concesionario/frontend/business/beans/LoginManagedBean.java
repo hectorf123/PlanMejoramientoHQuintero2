@@ -42,6 +42,11 @@ public class LoginManagedBean implements Serializable {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
+    
+    
+    public void registrarCliente(){
+        cFL.create(cliente);
+    }
 
     public String iniciarSesion() {
         Cliente c;
