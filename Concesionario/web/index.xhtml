@@ -15,9 +15,9 @@
                     <p:messages autoUpdate="true" showDetail="true"/>
                     <h:panelGrid columns="2" cellpadding="5">
                         <p:outputLabel for="txtUsuario" value="Usuario:"/>
-                        <p:inputText id="txtUsuario" value="#{loginManagedBean.cliente.nombre}" required="true"/>
+                        <p:inputText id="txtUsuario" value="#{loginManagedBean.concesionario.nombre}" required="true"/>
                         <p:outputLabel for="txtClave" value="Clave:"/>
-                        <p:password id="txtClave" value="#{loginManagedBean.cliente.clave}" required="true"/>
+                        <p:password id="txtClave" value="#{loginManagedBean.concesionario.clave}" required="true"/>
                         <h:column/>
                         <p:commandButton value="Iniciar sesión" action="#{loginManagedBean.iniciarSesion()}"/>
                     </h:panelGrid>
@@ -29,14 +29,15 @@
             <p:fieldset legend="Registrarse" toggleable="true" toggleSpeed="500">
                 <h:panelGrid columns="2" cellpadding="5">                                                          
                     <p:outputLabel value="Nombre:" for="nombre" />
-                    <p:inputText id="nombre" value="#{loginManagedBean.cliente.nombre}" title="Nombre" required="true" requiredMessage="The Nombre field is required."/>
+                    <p:inputText id="nombre" value="#{loginManagedBean.concesionario.nombre}" title="Nombre" required="true" requiredMessage="The Nombre field is required."/>
                     <p:outputLabel value="Clave:" for="clave" />
-                    <p:inputText id="clave" value="#{loginManagedBean.cliente.clave}" title="Clave" required="true" requiredMessage="The Clave field is required."/>
+                    <p:inputText id="clave" value="#{loginManagedBean.concesionario.clave}" title="Clave" required="true" requiredMessage="The Clave field is required."/>
                     <p:outputLabel value="Telefono:" for="telefono" />
-                    <p:inputText id="telefono" value="#{loginManagedBean.cliente.telefono}" title="Telefono" required="true" requiredMessage="The Telefono field is required."/>
+                    <p:inputText id="telefono" value="#{loginManagedBean.concesionario.telefono}" title="Telefono" required="true" requiredMessage="The Telefono field is required."/>
                     <p:outputLabel value="Direccion:" for="direccion" />
-                    <p:inputText id="direccion" value="#{loginManagedBean.cliente.direccion}" title="Direccion" required="true" requiredMessage="The Direccion field is required."/>     
-                    <p:commandButton value="Regitrarse" action="#{loginManagedBean.registrarCliente()}"/>                                  
+                    <p:inputText id="direccion" value="#{loginManagedBean.concesionario.direccion}" title="Direccion" required="true" requiredMessage="The Direccion field is required."/>  
+                    <h:column/>
+                    <p:commandButton value="Regitrarse" action="#{loginManagedBean.registrarConcesionario()}"/>                                  
                 </h:panelGrid>
             </p:fieldset>
         </h:form>

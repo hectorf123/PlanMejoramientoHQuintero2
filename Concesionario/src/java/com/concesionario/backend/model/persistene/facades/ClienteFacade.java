@@ -6,11 +6,11 @@
 package com.concesionario.backend.model.persistene.facades;
 
 import com.concesionario.backend.model.persistence.entities.Cliente;
-import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+
 
 /**
  *
@@ -30,24 +30,4 @@ public class ClienteFacade extends AbstractFacade<Cliente> implements ClienteFac
     public ClienteFacade() {
         super(Cliente.class);
     }
-
-    @Override
-    public Cliente iniciarSesion(Cliente c) {
-        Cliente cliente = null;
-        String consulta;
-        try {
-            consulta = "FROM Cliente c WHERE c.nombre = ?1 and c.clave = ?2";
-            Query query = em.createQuery(consulta);
-            query.setParameter(1, c.getNombre());
-            query.setParameter(2, c.getClave());
-            List<Cliente> lista = query.getResultList();
-            if (!lista.isEmpty()) {
-                cliente = lista.get(0);
-            }
-        } catch (Exception e) {
-            throw e;
-        }
-        return cliente;
-    }
-
 }

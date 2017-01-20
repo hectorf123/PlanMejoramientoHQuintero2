@@ -5,8 +5,9 @@
  */
 package com.concesionario.frontend.business.beans;
 
-import com.concesionario.backend.model.persistence.entities.Cliente;
-import com.concesionario.backend.model.persistene.facades.ClienteFacadeLocal;
+import com.concesionario.backend.model.persistence.entities.Concesionario;
+
+import com.concesionario.backend.model.persistene.facades.ConcesionarioFacadeLocal;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -23,37 +24,36 @@ import javax.faces.view.ViewScoped;
 @ViewScoped
 public class LoginManagedBean implements Serializable {
 
-    private Cliente cliente;
+    private Concesionario concesionario;
     @EJB
-    private ClienteFacadeLocal cFL;
+    private ConcesionarioFacadeLocal cFL;
 
     public LoginManagedBean() {
     }
 
     @PostConstruct
     public void init() {
-        cliente = new Cliente();
+        concesionario = new Concesionario();
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public Concesionario getConcesionario() {
+        return concesionario;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setConcesionario(Concesionario concesionario) {
+        this.concesionario = concesionario;
     }
-    
-    
-    public void registrarCliente(){
-        cFL.create(cliente);
+
+    public void registrarConcesionario() {
+        cFL.create(concesionario);
     }
 
     public String iniciarSesion() {
-        Cliente c;
+        Concesionario co;
         String redireccionar = null;
         try {
-            c = cFL.iniciarSesion(cliente);
-            if (c != null) {
+            co = cFL.iniciarSesion(concesionario);
+            if (co != null) {
                 redireccionar = "/Pages/inicio";
             } else {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, null, "El usuario o la clave son incorrectas."));

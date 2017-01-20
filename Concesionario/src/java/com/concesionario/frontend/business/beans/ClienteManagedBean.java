@@ -10,8 +10,10 @@ import com.concesionario.backend.model.persistene.facades.ClienteFacadeLocal;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
@@ -20,7 +22,7 @@ import javax.faces.context.FacesContext;
  * @author Juank
  */
 @Named(value = "clienteManagedBean")
-@SessionScoped
+@RequestScoped
 public class ClienteManagedBean implements Serializable {
 
     private Cliente cliente;
@@ -45,6 +47,14 @@ public class ClienteManagedBean implements Serializable {
 
     public void registrarCliente() {
         cFL.create(cliente);
+    }
+    
+    public void eliminarCliente(Cliente c){
+        cFL.remove(c);
+    }
+    
+    public List<Cliente> listarPersona() {
+        return cFL.findAll();
     }
 
 }
