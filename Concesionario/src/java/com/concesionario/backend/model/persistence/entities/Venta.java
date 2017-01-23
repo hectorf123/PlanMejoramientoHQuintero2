@@ -34,7 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Venta.findAll", query = "SELECT v FROM Venta v")
     , @NamedQuery(name = "Venta.findByIdVenta", query = "SELECT v FROM Venta v WHERE v.idVenta = :idVenta")
     , @NamedQuery(name = "Venta.findByFecha", query = "SELECT v FROM Venta v WHERE v.fecha = :fecha")})
-public class Venta implements Serializable {
+public class Venta implements Serializable,Dto {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -121,6 +121,11 @@ public class Venta implements Serializable {
     @Override
     public String toString() {
         return "com.concesionario.backend.model.persistence.entities.Venta[ idVenta=" + idVenta + " ]";
+    }
+
+    @Override
+    public String getPK() {
+        return idVenta.toString();
     }
     
 }

@@ -7,6 +7,7 @@ package com.concesionario.frontend.business.beans;
 
 import com.concesionario.backend.model.persistence.entities.Cliente;
 import com.concesionario.backend.model.persistene.facades.ClienteFacadeLocal;
+import com.concesionario.frontend.logica.IManagedBean;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -23,7 +24,7 @@ import javax.faces.context.FacesContext;
  */
 @Named(value = "clienteManagedBean")
 @RequestScoped
-public class ClienteManagedBean implements Serializable {
+public class ClienteManagedBean implements Serializable, IManagedBean<Cliente> {
 
     private Cliente cliente;
     @EJB
@@ -37,6 +38,11 @@ public class ClienteManagedBean implements Serializable {
         cliente = new Cliente();
     }
 
+    @Override
+    public Cliente getObjectByKey(Integer key) {
+        return cFL.find(key);
+    }
+
     public Cliente getCliente() {
         return cliente;
     }
@@ -48,11 +54,11 @@ public class ClienteManagedBean implements Serializable {
     public void registrarCliente() {
         cFL.create(cliente);
     }
-    
-    public void eliminarCliente(Cliente c){
+
+    public void eliminarCliente(Cliente c) {
         cFL.remove(c);
     }
-    
+
     public List<Cliente> listarPersona() {
         return cFL.findAll();
     }

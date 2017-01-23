@@ -7,6 +7,8 @@ package com.concesionario.frontend.business.beans;
 
 import com.concesionario.backend.model.persistence.entities.Vehiculo;
 import com.concesionario.backend.model.persistene.facades.VehiculoFacadeLocal;
+import com.concesionario.frontend.logica.IManagedBean;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -20,12 +22,11 @@ import javax.enterprise.context.RequestScoped;
  */
 @Named(value = "vehiculoManagedBean")
 @RequestScoped
-public class VehiculoManagedBean {
+public class VehiculoManagedBean implements Serializable, IManagedBean<Vehiculo> {
 
     private Vehiculo vehiculo;
     @EJB
     private VehiculoFacadeLocal vFL;
-    private List<Vehiculo> veh;
 
     public VehiculoManagedBean() {
     }
@@ -33,11 +34,11 @@ public class VehiculoManagedBean {
     @PostConstruct
     public void init() {
         vehiculo = new Vehiculo();
-
     }
 
-    public List<Vehiculo> getCars() {
-        return veh;
+    @Override
+    public Vehiculo getObjectByKey(Integer key) {
+        return vFL.find(key);
     }
 
     public Vehiculo getVehiculo() {
@@ -50,6 +51,10 @@ public class VehiculoManagedBean {
 
     public void registrarVehiculo() {
         vFL.create(vehiculo);
+    }
+
+    public List<Vehiculo> listarVehiculo() {
+        return vFL.findAll();
     }
 
 }

@@ -37,7 +37,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Cliente.findByClave", query = "SELECT c FROM Cliente c WHERE c.clave = :clave")
     , @NamedQuery(name = "Cliente.findByTelefono", query = "SELECT c FROM Cliente c WHERE c.telefono = :telefono")
     , @NamedQuery(name = "Cliente.findByDireccion", query = "SELECT c FROM Cliente c WHERE c.direccion = :direccion")})
-public class Cliente implements Serializable {
+public class Cliente implements Serializable,Dto {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -154,6 +154,11 @@ public class Cliente implements Serializable {
     @Override
     public String toString() {
         return "com.concesionario.backend.model.persistence.entities.Cliente[ idCliente=" + idCliente + " ]";
+    }
+
+    @Override
+    public String getPK() {
+        return idCliente.toString();
     }
     
 }

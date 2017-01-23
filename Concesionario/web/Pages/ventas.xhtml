@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Ventas</title>
+    </h:head>
+    <h:body>
+        <f:view>
+            <h:form>
+                <p:messages/>
+                <h1><h:outputText value="Venta"/></h1>
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="Fecha:" for="fecha" />
+                    <p:inputText id="fecha" value="#{ventaManagedbean.venta.fecha}" title="Fecha" required="true" requiredMessage="The Fecha field is required.">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </p:inputText>
+                    <p:outputLabel value="IdVehiculo:" for="idVehiculo" />
+                    <p:selectOneMenu id="idVehiculo" value="#{ventaManagedbean.venta.idVehiculo}" required="true" requiredMessage="The IdVehiculo field is required.">
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{vehiculoManagedBean.listarVehiculo()}" var="lV" itemLabel="#{lV.marca}"/>
+                    </p:selectOneMenu>
+                    <p:outputLabel value="IdCliente:" for="idCliente" />
+                    <p:selectOneMenu id="idCliente" value="#{ventaManagedbean.venta.idCliente}" required="true" requiredMessage="The IdCliente field is required.">
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{clienteManagedBean.listarPersona()}" var="lC" itemLabel="#{lC.nombre}"/>
+                    </p:selectOneMenu>
+                    <p:commandButton value="Registrar" actionListener="#{ventaManagedbean.registrarVenta()}"/>
+                </p:panelGrid>
+            </h:form>
+        </f:view>
+        <f:view>
+
+
+            <h:form>
+                <h1><h:outputText value="Create/Edit"/></h1>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="Fecha:" for="fecha" />
+                    <h:inputText value="#{ventaManagedbean.venta.fecha}" title="Fecha" required="true" requiredMessage="The Fecha field is required.">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="IdVehiculo:" for="idVehiculo" />
+                    <h:selectOneMenu  value="#{ventaManagedbean.venta.idVehiculo}" title="IdVehiculo" required="true" requiredMessage="The IdVehiculo field is required.">
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{vehiculoManagedBean.listarVehiculo()}" var="V" itemLabel="#{V.marca}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="IdCliente:" for="idCliente" />
+                    <h:selectOneMenu value="#{ventaManagedbean.venta.idCliente}" title="IdCliente" required="true" requiredMessage="The IdCliente field is required.">
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{clienteManagedBean.listarPersona()}" var="c" itemLabel="#{c.nombre}"/>
+                    </h:selectOneMenu>
+                    <h:commandButton value="registrar" actionListener="#{ventaManagedbean.registrarVenta()}"/>
+                </h:panelGrid>
+            </h:form>
+        </f:view>
+
+
+    </h:body>
+</html>
+

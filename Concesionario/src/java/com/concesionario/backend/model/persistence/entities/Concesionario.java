@@ -33,7 +33,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Concesionario.findByClave", query = "SELECT c FROM Concesionario c WHERE c.clave = :clave")
     , @NamedQuery(name = "Concesionario.findByTelefono", query = "SELECT c FROM Concesionario c WHERE c.telefono = :telefono")
     , @NamedQuery(name = "Concesionario.findByDireccion", query = "SELECT c FROM Concesionario c WHERE c.direccion = :direccion")})
-public class Concesionario implements Serializable {
+public class Concesionario implements Serializable,Dto {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -140,6 +140,11 @@ public class Concesionario implements Serializable {
     @Override
     public String toString() {
         return "com.concesionario.backend.model.persistence.entities.Concesionario[ nit=" + nit + " ]";
+    }
+
+    @Override
+    public String getPK() {
+        return nit.toString();
     }
     
 }
