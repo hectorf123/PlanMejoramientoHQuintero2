@@ -54,7 +54,10 @@ public class VentaManagedbean implements Serializable, IManagedBean<Venta> {
 
     public List<Venta> listarVentas() {
         return vFL.findAll();
-
+    }
+    
+    public void eliminarVenta(Venta v){
+        vFL.remove(v);
     }
 
 }

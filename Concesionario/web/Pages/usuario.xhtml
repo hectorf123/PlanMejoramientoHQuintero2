@@ -65,7 +65,7 @@
                     <p:column headerText="Dirección">
                         <p:outputLabel value="#{c.direccion}"/>
                     </p:column>
-                    <p:column>
+                    <p:column headerText="Acciones">
                         <p:commandButton value="Eliminar" actionListener="#{clienteManagedBean.eliminarCliente(c)}" update="tabla"/>
                     </p:column>
                 </p:dataTable>

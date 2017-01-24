@@ -8,55 +8,61 @@
         <title>Ventas</title>
     </h:head>
     <h:body>
-        <f:view>
+        <h:form>  
+            <p:growl id="messages"/>
+            <p:menubar>
+                <p:menuitem value="Inicio" icon="ui-icon-document"/>
+                <p:menuitem value="Vehículos" icon="ui-icon-pencil"/>
+                <p:menuitem value="Acerca de" icon="ui-icon-pencil"/>
+                <p:menuitem value="Quit" url="#" icon="ui-icon-close" />
+                <f:facet name="options">
+                    <p:inputText style="margin-right:10px" placeholder="Search"/>
+                    <p:commandButton type="button" value="Cerrar sesión" icon="ui-icon-extlink" />
+                </f:facet>
+            </p:menubar>
+        </h:form>
+        <br/>
+        <div style="display: flex;" >
+            <p:panel header="Registrar venta">
+                <h:form id="formulario">
+                    <p:messages/>
+                    <h:panelGrid columns="2" cellpadding="5" cellspacing="5">
+                        <p:outputLabel value="Fecha:" for="fecha" />
+                        <p:inputText id="fecha" value="#{ventaManagedbean.venta.fecha}" title="Fecha" required="true" requiredMessage="The Fecha field is required.">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </p:inputText>
+                        <p:outputLabel value="Vehiculo:" for="idVehiculo" />
+                        <p:selectOneMenu id="idVehiculo" value="#{ventaManagedbean.venta.idVehiculo}" required="true" requiredMessage="The IdVehiculo field is required.">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{vehiculoManagedBean.listarVehiculo()}" var="lV" itemLabel="#{lV.marca}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="Cliente:" for="idCliente" />
+                        <p:selectOneMenu id="idCliente" value="#{ventaManagedbean.venta.idCliente}" required="true" requiredMessage="The IdCliente field is required.">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{clienteManagedBean.listarPersona()}" var="lC" itemLabel="#{lC.nombre}"/>
+                        </p:selectOneMenu>
+                        <h:column/>
+                        <p:commandButton value="Registrar" actionListener="#{ventaManagedbean.registrarVenta()}"/>
+                    </h:panelGrid>
+                </h:form>
+            </p:panel>
             <h:form>
-                <p:messages/>
-                <h1><h:outputText value="Venta"/></h1>
-                <p:panelGrid columns="2">
-                    <p:outputLabel value="Fecha:" for="fecha" />
-                    <p:inputText id="fecha" value="#{ventaManagedbean.venta.fecha}" title="Fecha" required="true" requiredMessage="The Fecha field is required.">
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </p:inputText>
-                    <p:outputLabel value="IdVehiculo:" for="idVehiculo" />
-                    <p:selectOneMenu id="idVehiculo" value="#{ventaManagedbean.venta.idVehiculo}" required="true" requiredMessage="The IdVehiculo field is required.">
-                        <!-- TODO: update below reference to list of available items-->
-                        <f:selectItems value="#{vehiculoManagedBean.listarVehiculo()}" var="lV" itemLabel="#{lV.marca}"/>
-                    </p:selectOneMenu>
-                    <p:outputLabel value="IdCliente:" for="idCliente" />
-                    <p:selectOneMenu id="idCliente" value="#{ventaManagedbean.venta.idCliente}" required="true" requiredMessage="The IdCliente field is required.">
-                        <!-- TODO: update below reference to list of available items-->
-                        <f:selectItems value="#{clienteManagedBean.listarPersona()}" var="lC" itemLabel="#{lC.nombre}"/>
-                    </p:selectOneMenu>
-                    <p:commandButton value="Registrar" actionListener="#{ventaManagedbean.registrarVenta()}"/>
-                </p:panelGrid>
+                <p:dataTable value="#{ventaManagedbean.listarVentas()}" var="v" id="tabla" >
+                    <p:column headerText="Fecha venta">
+                        <p:outputLabel value="#{v.fecha}"/>
+                    </p:column>
+                    <p:column headerText="Vehiculo">
+                        <p:outputLabel value="#{v.idVehiculo}"/>
+                    </p:column>
+                    <p:column headerText="Cliente">
+                        <p:outputLabel value="#{v.idCliente}"/>
+                    </p:column>
+                    <p:column headerText="Acciones">
+                        <p:commandButton value="Eliminar" actionListener="#{ventaManagedbean.eliminarVenta(v)}" update="tabla"/>
+                    </p:column>
+                </p:dataTable>
             </h:form>
-        </f:view>
-        <f:view>
-
-
-            <h:form>
-                <h1><h:outputText value="Create/Edit"/></h1>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="Fecha:" for="fecha" />
-                    <h:inputText value="#{ventaManagedbean.venta.fecha}" title="Fecha" required="true" requiredMessage="The Fecha field is required.">
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:inputText>
-                    <h:outputLabel value="IdVehiculo:" for="idVehiculo" />
-                    <h:selectOneMenu  value="#{ventaManagedbean.venta.idVehiculo}" title="IdVehiculo" required="true" requiredMessage="The IdVehiculo field is required.">
-                        <!-- TODO: update below reference to list of available items-->
-                        <f:selectItems value="#{vehiculoManagedBean.listarVehiculo()}" var="V" itemLabel="#{V.marca}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="IdCliente:" for="idCliente" />
-                    <h:selectOneMenu value="#{ventaManagedbean.venta.idCliente}" title="IdCliente" required="true" requiredMessage="The IdCliente field is required.">
-                        <!-- TODO: update below reference to list of available items-->
-                        <f:selectItems value="#{clienteManagedBean.listarPersona()}" var="c" itemLabel="#{c.nombre}"/>
-                    </h:selectOneMenu>
-                    <h:commandButton value="registrar" actionListener="#{ventaManagedbean.registrarVenta()}"/>
-                </h:panelGrid>
-            </h:form>
-        </f:view>
-
-
+        </div>
     </h:body>
 </html>
 
