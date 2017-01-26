@@ -27,6 +27,8 @@ public class VehiculoManagedBean implements Serializable, IManagedBean<Vehiculo>
     private Vehiculo vehiculo;
     @EJB
     private VehiculoFacadeLocal vFL;
+    private int precio;
+    private List<Vehiculo> pruebaCon;
 
     public VehiculoManagedBean() {
     }
@@ -49,12 +51,32 @@ public class VehiculoManagedBean implements Serializable, IManagedBean<Vehiculo>
         this.vehiculo = vehiculo;
     }
 
+    public int getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(int precio) {
+        this.precio = precio;
+    }
+
+    public List<Vehiculo> getPruebaCon() {
+        return pruebaCon;
+    }
+
+    public void setPruebaCon(List<Vehiculo> pruebaCon) {
+        this.pruebaCon = pruebaCon;
+    }
+
     public void registrarVehiculo() {
         vFL.create(vehiculo);
     }
 
     public List<Vehiculo> listarVehiculo() {
         return vFL.findAll();
+    }
+    
+    public void consultarPrecio(){
+        pruebaCon =vFL.consultaVehiculo(precio);
     }
 
 }

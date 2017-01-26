@@ -12,10 +12,11 @@
         <h:form>  
             <p:growl id="messages"/>
             <p:menubar>
-                <p:menuitem value="Inicio" icon="ui-icon-document"/>
-                <p:menuitem value="Vehículos" icon="ui-icon-pencil"/>
-                <p:menuitem value="Acerca de" icon="ui-icon-pencil"/>
-                <p:menuitem value="Quit" url="#" icon="ui-icon-close" />
+                <p:menuitem value="Inicio" actionListener="#{loginManagedBean.redirecionarInicio()}" icon="ui-icon-home"/>
+                <p:menuitem value="Reportes" actionListener="#{loginManagedBean.redireccionarReporte()}" icon="ui-icon-pencil"/>
+                <p:menuitem value="Ventas" actionListener="#{loginManagedBean.redireccionarVenta()}" icon="ui-icon-cart"/>
+                <p:menuitem value="Clientes" url="#" icon="ui-icon-person" />
+                <p:menuitem value="Consulta" actionListener="#{loginManagedBean.redireccionarConsulta()}" icon="ui-icon-person" />
                 <f:facet name="options">
                     <p:inputText style="margin-right:10px" placeholder="Search"/>
                     <p:commandButton type="button" value="Cerrar sesión" icon="ui-icon-extlink" />
@@ -29,22 +30,22 @@
                     <p:messages/>
                     <h:panelGrid columns="2" cellpadding="5" cellspacing="5">
                         <h:outputLabel value="Nombre:"/>
-                        <p:inputText value="#{clienteManagedBean.cliente.nombre}" title="Pernombre" required="true" label="Nombre">
+                        <p:inputText value="#{clienteManagedBean.cliente.nombre}" required="true" label="Nombre">
                             <f:validateLength maximum="20" minimum="3"/>
                         </p:inputText>
                         <h:outputLabel value="Clave:"/>
-                        <p:inputText value="#{clienteManagedBean.cliente.clave}" title="Perapellido" required="true" label="Apellido">
+                        <p:inputText value="#{clienteManagedBean.cliente.clave}" required="true" label="Clave">
                             <f:validateLength maximum="25" minimum="3"/>
                         </p:inputText>
 
                         <h:outputLabel value="Teléfono:"/>
-                        <p:inputText value="#{clienteManagedBean.cliente.telefono}" title="Perapellido" required="true" label="Apellido">
+                        <p:inputText value="#{clienteManagedBean.cliente.telefono}" required="true" label="Telefono">
                             <f:validateLength maximum="25" minimum="3"/>
                         </p:inputText>
 
                         <h:outputLabel value="Dirección:"/>
-                        <p:inputText required="true" id="pertelefonofijo" value="#{clienteManagedBean.cliente.direccion}" title="Pertelefonofijo">
-                            <f:validateLength maximum="15" minimum=""/>
+                        <p:inputText required="true" value="#{clienteManagedBean.cliente.direccion}">
+                            <f:validateLength maximum="15" minimum="4"/>
                         </p:inputText>
                         <h:column/>
                         <p:commandButton value="Registrar" update=":formulario " actionListener="#{clienteManagedBean.registrarCliente()}"/>

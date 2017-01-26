@@ -8,7 +8,10 @@ package com.concesionario.frontend.business.beans;
 import com.concesionario.backend.model.persistence.entities.Concesionario;
 
 import com.concesionario.backend.model.persistene.facades.ConcesionarioFacadeLocal;
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
@@ -67,4 +70,48 @@ public class LoginManagedBean implements Serializable {
         return redireccionar;
     }
 
+    public void cerrarSession() throws IOException {
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        FacesContext.getCurrentInstance().getExternalContext().redirect("../index.xhtml");
+    }
+
+    public void redirecionarInicio() {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("inicio.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(LoginManagedBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void redireccionarReporte() {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("reportes.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(LoginManagedBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void redireccionarVenta() {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("ventas.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(LoginManagedBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void redireccionarCliente() {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("usuario.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(LoginManagedBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void redireccionarConsulta(){
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("prueba.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(LoginManagedBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

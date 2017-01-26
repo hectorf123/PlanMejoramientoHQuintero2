@@ -11,13 +11,14 @@
         <h:form>  
             <p:growl id="messages"/>
             <p:menubar>
-                <p:menuitem value="Inicio" icon="ui-icon-document"/>
-                <p:menuitem value="Reportes" icon="ui-icon-pencil"/>
-                <p:menuitem value="Ventas" url="Pages/ventas.xhtml" icon="ui-icon-pencil"/>
-                <p:menuitem value="Clientes" url="Pages/usuario.xhtml" icon="ui-icon-close" />
+                <p:menuitem value="Inicio" icon="ui-icon-home"/>
+                <p:menuitem value="Reportes" actionListener="#{loginManagedBean.redireccionarReporte()}" icon="ui-icon-pencil"/>
+                <p:menuitem value="Ventas" actionListener="#{loginManagedBean.redireccionarVenta()}" icon="ui-icon-cart"/>
+                <p:menuitem value="Clientes" actionListener="#{loginManagedBean.redireccionarCliente()}" icon="ui-icon-person" />
+                <p:menuitem value="Consulta" actionListener="#{loginManagedBean.redireccionarConsulta()}" icon="ui-icon-person" />
                 <f:facet name="options">
                     <p:inputText style="margin-right:10px" placeholder="Search"/>
-                    <p:commandButton type="button" value="Cerrar sesión" icon="ui-icon-extlink" />
+                    <p:commandButton value="Cerrar sesión" actionListener="#{loginManagedBean.cerrarSession()}" icon="ui-icon-extlink" />
                 </f:facet>
             </p:menubar>
         </h:form>

@@ -38,6 +38,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Vehiculo.findByMarca", query = "SELECT v FROM Vehiculo v WHERE v.marca = :marca")
     , @NamedQuery(name = "Vehiculo.findByModelo", query = "SELECT v FROM Vehiculo v WHERE v.modelo = :modelo")
     , @NamedQuery(name = "Vehiculo.findByPrecio", query = "SELECT v FROM Vehiculo v WHERE v.precio = :precio")
+    , @NamedQuery(name = "Vehiculo.consultaPrecio", query = "SELECT v FROM Vehiculo v WHERE v.precio > :precio")
     , @NamedQuery(name = "Vehiculo.findByFoto", query = "SELECT v FROM Vehiculo v WHERE v.foto = :foto")})
 public class Vehiculo implements Serializable, Dto {
 

@@ -7,7 +7,7 @@ package com.concesionario.frontend.logica;
 
 /**
  *
- * @author Andres
+ * @author Juaank
  */
 public interface IManagedBean<T> {
     T getObjectByKey(Integer key);
